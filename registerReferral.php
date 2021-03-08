@@ -17,14 +17,6 @@ if ($referrerID[0][1] == $_POST['udid']) {
 	exit("kE03");
 }
 
-$checkClaimed = $db->prepare("SELECT is_claimed FROM referral WHERE id=:id");
-$checkClaimed->execute([':id' => $referrerID[0][0]]);
-$checkClaimed = $checkClaimed->fetchColumn();
-
-if ($checkClaimed == 1) {
-	exit("kE01");
-}
-
 $refereeID = MainLib::getUserIDOrDie($db, $_POST['udid']);
 
 if (empty($referrerID) || empty($refereeID)) {

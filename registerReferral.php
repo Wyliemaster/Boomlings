@@ -31,7 +31,7 @@ if (empty($referrerID) || empty($refereeID)) {
 	exit("kE02");
 }
 
-$refID = $db->prepare("INSERT INTO referral (referrer_id, referee_id, is_claimed) VALUES (:referrerID, :refereeID, 1) ON DUPLICATE KEY UPDATE id = id");
+$refID = $db->prepare("INSERT INTO referral (referrer_id, referee_id) VALUES (:referrerID, :refereeID) ON DUPLICATE KEY UPDATE id = id");
 $refID->execute(['referrerID' => $referrerID[0][0], 'refereeID' => $refereeID]);
 
 echo 1;
